@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Task.One
 {
@@ -11,18 +8,24 @@ namespace Task.One
     /// </summary>
     public static class NOD
     {
+        #region Euclidean
         /// <summary>
         /// Find numbers NOD by the Euclidean method
         /// </summary>
+        /// <param name="time">Execution time</param>
         /// <param name="array">Numbers array</param>
         /// <returns>Numbers NOD</returns>
-        public static int GetEuclideanNoD(params int[] array)
+        public static int GetEuclideanNoD(out TimeSpan time, params int[] array)
         {
             if (array == null)
                 throw new ArgumentNullException();
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             int result = EuclideanNoD(array[0], array[1]);
             for(int i = 2; i< array.Length; i++)
                 result = EuclideanNoD(result, array[i]);
+            timer.Stop();
+            time = timer.Elapsed;
             return result;
         }
 
@@ -48,19 +51,26 @@ namespace Task.One
             }
             return numberOne;
         }
+        #endregion
 
+        #region Binary
         /// <summary>
         /// Find numbers NOD by the binary method
         /// </summary>
+        /// <param name="time">Execution time</param>
         /// <param name="array">Numbers array</param>
         /// <returns>Numbers NOD</returns>
-        public static int GetBinaryNoD(params int[] array)
+        public static int GetBinaryNoD(out TimeSpan time, params int[] array)
         {
             if (array == null)
                 throw new ArgumentNullException();
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             int result = BinaryNoD(array[0], array[1]);
             for (int i = 2; i < array.Length; i++)
                 result = BinaryNoD(result, array[i]);
+            timer.Stop();
+            time = timer.Elapsed;
             return result;
         }
 
@@ -93,5 +103,6 @@ namespace Task.One
                 return BinaryNoD((numberOne - numberTwo) >> 1, numberTwo);
             return BinaryNoD((numberTwo - numberOne) >> 1, numberOne);
         }
+        #endregion
     }
 }
