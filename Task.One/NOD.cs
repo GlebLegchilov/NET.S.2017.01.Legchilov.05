@@ -9,6 +9,23 @@ namespace Task.One
     public static class NOD
     {
         #region Euclidean
+
+        /// <summary>
+        /// Find numbers NOD by the Euclidean method
+        /// </summary>
+        /// <param name="time">Execution time</param>
+        /// <param name="numberOne">First number</param>
+        /// <param name="numberTwo">Second number</param>
+        /// <returns>Numbers NOD</returns>
+        public static int GetEuclideanNoD(out TimeSpan time, int numberOne, int numberTwo)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            int result = EuclideanNoD(numberOne, numberTwo);
+            timer.Stop();
+            time = timer.Elapsed;
+            return result;
+        }
         /// <summary>
         /// Find numbers NOD by the Euclidean method
         /// </summary>
@@ -54,6 +71,24 @@ namespace Task.One
         #endregion
 
         #region Binary
+
+        /// <summary>
+        /// Find numbers NOD by the binary method
+        /// </summary>
+        /// <param name="time">Execution time</param>
+        /// <param name="numberOne">First number</param>
+        /// <param name="numberTwo">Second number</param>
+        /// <returns>Numbers NOD</returns>
+        public static int GetBinaryNoD(out TimeSpan time, int numberOne, int numberTwo)
+        {
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
+            int result = BinaryNoD(numberOne, numberTwo);
+            timer.Stop();
+            time = timer.Elapsed;
+            return result;
+        }
+
         /// <summary>
         /// Find numbers NOD by the binary method
         /// </summary>
