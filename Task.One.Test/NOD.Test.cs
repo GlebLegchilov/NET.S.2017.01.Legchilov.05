@@ -12,7 +12,7 @@ namespace Task.One.Test
         [TestCase(null)]
         public void GetEuclideanNoD_ThrowArgumentNullException(int[] array)
         {
-            TimeSpan time;
+            String time;
             Assert.Throws<ArgumentNullException>(() => GetEuclideanNoD(out time, array));
         }
 
@@ -20,14 +20,14 @@ namespace Task.One.Test
         [TestCase(new int[] { 10, 25, 5, -15 }, ExpectedResult = 5)]
         public int GetEuclideanNoD_PositivTest(params int[] array)
         {
-            TimeSpan time;
+            String time;
             return GetEuclideanNoD(out time, array);
         }
 
         [TestCase(null)]
         public void GetBinaryNoD_ThrowArgumentNullException(int[] array)
         {
-            TimeSpan time;
+            String time;
             Assert.Throws<ArgumentNullException>(() => GetBinaryNoD(out time, array));
         }
 
@@ -35,7 +35,7 @@ namespace Task.One.Test
         [TestCase(new int[] { 10, 25, 5, -15 }, ExpectedResult = 5)]
         public int GetBinaryNoD_PositivTest(params int[] array)
         {
-            TimeSpan time;
+            String time;
             return GetBinaryNoD(out time, array);
         }
 
