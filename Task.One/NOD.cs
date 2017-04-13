@@ -3,24 +3,26 @@ using System.Diagnostics;
 
 namespace Task.One
 {
+
+
     /// <summary>
     /// Class find numbers NOD 
     /// </summary>
     public static class NOD
     {
-        #region Euclidean
-
-        private static Func<int[], string, int> getEucNod = new Func<int[], string, int>(delegate(int[] array, string time) 
+        private static Func<int[], string, Func<int, int, int>, int> getNod = new Func<int[], string, Func<int, int, int>, int>(delegate (int[] array, string time, Func<int, int, int> del)
         {
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            int result = EuclideanNoD(array[0], array[1]);
+            int result = del(array[0], array[1]);
             for (int i = 2; i < array.Length; i++)
-                result = EuclideanNoD(result, array[i]);
+                result = del(result, array[i]);
             timer.Stop();
             time = timer.Elapsed.TotalSeconds.ToString();
             return result;
         });
+
+        #region Euclidean
 
         /// <summary>
         /// Find numbers NOD by the Euclidean method
@@ -32,7 +34,7 @@ namespace Task.One
         public static int GetEuclideanNoD(out string time, int numberOne, int numberTwo)
         {
             int[] paramArray = new int[] { numberOne, numberTwo};
-            return getEucNod(paramArray, time = null);
+            return getNod(paramArray, time = null, NOD.EuclideanNoD);
         }
         /// <summary>
         /// Find numbers NOD by the Euclidean method
@@ -45,7 +47,7 @@ namespace Task.One
         public static int GetEuclideanNoD(out string time, int numberOne, int numberTwo, int numberThree)
         {
             int[] paramArray = new int[] { numberOne, numberTwo, numberThree };
-            return getEucNod(paramArray, time = null);
+            return getNod(paramArray, time = null, NOD.EuclideanNoD);
         }
         /// <summary>
         /// Find numbers NOD by the Euclidean method
@@ -56,7 +58,7 @@ namespace Task.One
         public static int GetEuclideanNoD(out string time, params int[] array)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
-            return getEucNod(array, time = null);
+            return getNod(array, time = null, NOD.EuclideanNoD);
         }
 
         /// <summary>
@@ -79,17 +81,6 @@ namespace Task.One
         #endregion
 
         #region Binary
-        private static Func<int[], string, int> getBinNod = new Func<int[], string, int>(delegate (int[] array, string time)
-        {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
-            int result = BinaryNoD(array[0], array[1]);
-            for (int i = 2; i < array.Length; i++)
-                result = BinaryNoD(result, array[i]);
-            timer.Stop();
-            time = timer.Elapsed.TotalSeconds.ToString();
-            return result;
-        });
 
         /// <summary>
         /// Find numbers NOD by the binary method
@@ -101,7 +92,7 @@ namespace Task.One
         public static int GetBinaryNoD(out string time, int numberOne, int numberTwo)
         {
             int[] paramArray = new int[] { numberOne, numberTwo };
-            return getBinNod(paramArray, time = null);
+            return getNod(paramArray, time = null, NOD.BinaryNoD);
         }
         /// <summary>
         /// Find numbers NOD by the Euclidean method
@@ -114,7 +105,7 @@ namespace Task.One
         public static int GetBinaryNoD(out string time, int numberOne, int numberTwo, int numberThree)
         {
             int[] paramArray = new int[] { numberOne, numberTwo, numberThree };
-            return getBinNod(paramArray, time = null);
+            return getNod(paramArray, time = null, NOD.BinaryNoD);
         }
 
         /// <summary>
@@ -126,7 +117,7 @@ namespace Task.One
         public static int GetBinaryNoD(out string time, params int[] array)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
-            return getBinNod(array, time = null);
+            return getNod(array, time = null, NOD.BinaryNoD);
         }
         
 
